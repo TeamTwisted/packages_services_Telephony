@@ -1274,6 +1274,7 @@
     <string name="sim_label_emergency_calls">Emergency calls</string>
     <string name="sim_description_emergency_calls">Emergency calling only</string>
     <string name="sim_description_default">SIM card, slot: <xliff:g id="slot_id">%s</xliff:g></string>
+
     <!-- Configuration setting for world mode Format is <true;GID if any to be checked>-->
     <string translatable="false" name="config_world_mode"/>
 
@@ -1283,4 +1284,22 @@
     <string name="voicemail_notification_vibrate_key">voicemail_notification_vibrate_key</string>
     <!-- DO NOT TRANSLATE. Internal key for tty mode preference. -->
     <string name="tty_mode_key">button_tty_mode_key</string>
+
+    <!-- Number lookup -->
+    <string name="number_lookup">Phone number lookup</string>
+    <string name="enable_forward_lookup_title">Forward lookup</string>
+    <string name="enable_forward_lookup_summary">Show nearby places when searching in the dialer</string>
+    <string name="enable_people_lookup_title">People lookup</string>
+    <string name="enable_people_lookup_summary">Show online results for people when searching in the dialer</string>
+    <string name="enable_reverse_lookup_title">Reverse lookup</string>
+    <string name="enable_reverse_lookup_summary">Look up information about the person or place for unknown numbers on incoming calls</string>
+    <string name="choose_lookup_providers">Choose lookup providers</string>
+    <string name="choose_forward_lookup_provider_title">Choose forward lookup provider</string>
+    <string name="choose_people_lookup_provider_title">Choose people lookup provider</string>
+    <string name="choose_reverse_lookup_provider_title">Choose reverse lookup provider</string>
+
+    <!-- Chinese Reverse Lookup Provider -->
+    <string name="cyngn_reverse_lookup_provider_package" translatable="false">com.cyngn.chineselocationlookup</string>
+    <string name="cyngn_reverse_lookup_provider_name">Cyngn Chinese (CN)</string>
+    <string name="cyngn_reverse_lookup_provider_value" translatable="false">CyngnChinese</string>
 </resources>
