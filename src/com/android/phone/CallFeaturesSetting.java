@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2008 The Android Open Source Project
+ * Copyright (C) 2014 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -56,6 +57,7 @@ import com.android.phone.settings.PhoneAccountSettingsFragment;
 import com.android.phone.settings.VoicemailSettingsActivity;
 import com.android.phone.settings.fdn.FdnSetting;
 import com.android.services.telephony.sip.SipUtil;
+import com.android.internal.telephony.util.BlacklistUtils;
 
 import java.lang.String;
 import java.util.ArrayList;
@@ -106,9 +108,13 @@ public class CallFeaturesSetting extends PreferenceActivity
     private SubscriptionInfoHelper mSubscriptionInfoHelper;
     private TelecomManager mTelecomManager;
 
+    // Blacklist support
+    private static final String BUTTON_BLACKLIST = "button_blacklist";
+
     private CheckBoxPreference mButtonAutoRetry;
     private PreferenceScreen mVoicemailSettingsScreen;
     private CheckBoxPreference mEnableVideoCalling;
+    private PreferenceScreen mButtonBlacklist;
 
     /*
      * Click Listeners, handle click based on objects attached to UI.
@@ -317,6 +323,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             }
             wifiCallingSettings.setSummary(resId);
         }
+        updateBlacklistSummary();
     }
 
     @Override
@@ -331,6 +338,16 @@ public class CallFeaturesSetting extends PreferenceActivity
 
     private static void log(String msg) {
         Log.d(LOG_TAG, msg);
+    }
+
+    private void updateBlacklistSummary() {
+        if (mButtonBlacklist != null) {
+            if (BlacklistUtils.isBlacklistEnabled(this)) {
+                mButtonBlacklist.setSummary(R.string.blacklist_summary);
+            } else {
+                mButtonBlacklist.setSummary(R.string.blacklist_summary_disabled);
+            }
+        }
     }
 
     @Override
