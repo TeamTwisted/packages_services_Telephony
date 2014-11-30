@@ -392,7 +392,7 @@ public class NotificationMgr {
                     .setContentIntent(pendingIntent)
                     .setSound(ringtoneUri)
                     .setColor(mContext.getResources().getColor(R.color.dialer_theme_color))
-                    .setOngoing(true);
+                    .setOngoing(false);
 
             if (VoicemailNotificationSettingsUtil.isVibrationEnabled(phone)) {
                 builder.setDefaults(Notification.DEFAULT_VIBRATE);
