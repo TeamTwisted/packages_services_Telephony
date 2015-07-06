@@ -25,4 +25,7 @@
     <string name="prox_auto_speaker_incall_only_summary_on">On outgoing calls, listener will only become active after the receiving party answers</string>
     <string name="prox_auto_speaker_incall_only_summary_off">Listener will be active during all offhook call states (default)</string>
 
+    <!-- Title for the option managing whether or not to use non-intrusive incall UI. -->
+    <string name="use_non_intrusive_call_title">Non-intrusive incoming calls</string>
+
 </resources>

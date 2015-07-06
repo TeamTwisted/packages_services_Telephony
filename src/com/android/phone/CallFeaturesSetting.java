@@ -178,6 +178,7 @@ public class CallFeaturesSetting extends PreferenceActivity
     private static final String ENABLE_VIDEO_CALLING_KEY = "button_enable_video_calling";
 
     private static final String BUTTON_PROXIMITY_KEY   = "button_proximity_key";
+    private static final String USE_NON_INTRUSIVE_CALL_KEY = "use_non_intrusive_call";
 
     /** Event for Async voicemail change call */
     private static final int EVENT_VOICEMAIL_CHANGED        = 500;
@@ -211,6 +212,7 @@ public class CallFeaturesSetting extends PreferenceActivity
     private CheckBoxPreference mVoicemailNotificationVibrate;
     private CheckBoxPreference mEnableVideoCalling;
     private SwitchPreference mButtonProximity;
+    private SwitchPreference mUseNonIntrusiveCall;
 
     private SwitchPreference mProxSpeaker;
     private SlimSeekBarPreference mProxSpeakerDelay;
@@ -492,6 +494,10 @@ public class CallFeaturesSetting extends PreferenceActivity
             int delay = Integer.valueOf((String) objValue);
             Settings.System.putInt(getContentResolver(),
                     Settings.System.PROXIMITY_AUTO_SPEAKER_DELAY, delay);
+        } else if (preference == mUseNonIntrusiveCall) {
+            final boolean val = (Boolean) objValue;
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.USE_NON_INTRUSIVE_CALL, val ? 1 : 0);
         }
         // Always let the preference setting proceed.
         return true;
@@ -1255,6 +1261,11 @@ public class CallFeaturesSetting extends PreferenceActivity
             mProxSpeakerDelay.multiplyValue(100);
             mProxSpeakerDelay.setOnPreferenceChangeListener(this);
         }
+        mUseNonIntrusiveCall = (SwitchPreference) findPreference(USE_NON_INTRUSIVE_CALL_KEY);
+        if (mUseNonIntrusiveCall != null) {
+            mUseNonIntrusiveCall.setOnPreferenceChangeListener(this);
+        }
+
         mVoicemailSettingsScreen =
                 (PreferenceScreen) findPreference(VOICEMAIL_SETTING_SCREEN_PREF_KEY);
         mVoicemailSettings = (PreferenceScreen) findPreference(BUTTON_VOICEMAIL_SETTING_KEY);
