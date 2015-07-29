@@ -16,6 +16,8 @@
 
 package com.android.phone;
 
+import java.util.ArrayList;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -40,6 +42,9 @@ import android.telephony.ServiceState;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
+import android.text.SpannableStringBuilder;
+import android.text.format.DateUtils;
+import android.text.style.RelativeSizeSpan;
 import android.text.TextUtils;
 import android.util.ArrayMap;
 import android.util.Log;
@@ -50,6 +55,7 @@ import com.android.internal.telephony.PhoneBase;
 import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.phone.settings.VoicemailNotificationSettingsUtil;
 import com.android.phone.settings.VoicemailProviderSettingsUtil;
+import com.android.internal.telephony.util.BlacklistUtils;
 
 import java.util.Iterator;
 import java.util.List;
@@ -79,6 +85,7 @@ public class NotificationMgr {
     static final int CALL_FORWARD_NOTIFICATION = 4;
     static final int DATA_DISCONNECTED_ROAMING_NOTIFICATION = 5;
     static final int SELECTED_OPERATOR_FAIL_NOTIFICATION = 6;
+
 
     /** The singleton NotificationMgr instance. */
     private static NotificationMgr sInstance;
@@ -242,6 +249,8 @@ public class NotificationMgr {
         PhoneLookup.DISPLAY_NAME,
         PhoneLookup._ID
     };
+
+
 
     /**
      * Re-creates the message waiting indicator (voicemail) notification if it is showing.  Used to

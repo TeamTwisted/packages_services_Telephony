@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2008 The Android Open Source Project
+ * Copyright (C) 2014 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -70,6 +71,7 @@ import com.android.phone.settings.VoicemailProviderSettingsUtil;
 import com.android.phone.settings.VoicemailRingtonePreference;
 import com.android.phone.settings.fdn.FdnSetting;
 import com.android.services.telephony.sip.SipUtil;
+import com.android.internal.telephony.util.BlacklistUtils;
 
 import java.lang.String;
 import java.util.ArrayList;
@@ -198,6 +200,13 @@ public class CallFeaturesSetting extends PreferenceActivity
 
     private SubscriptionInfoHelper mSubscriptionInfoHelper;
 
+    private PreferenceScreen mButtonVideoCallFallback;
+    private PreferenceScreen mButtonVideoCallForward;
+    private PreferenceScreen mButtonVideoCallPictureSelect;
+    // Blacklist support
+    private static final String BUTTON_BLACKLIST = "button_blacklist";
+
+    private PreferenceScreen mIPPrefixPreference;
     private EditPhoneNumberPreference mSubMenuVoicemailSettings;
 
     /** Whether dialpad plays DTMF tone or not. */
@@ -217,6 +226,7 @@ public class CallFeaturesSetting extends PreferenceActivity
     private SwitchPreference mProxSpeaker;
     private SlimSeekBarPreference mProxSpeakerDelay;
     private SwitchPreference mProxSpeakerIncallOnly;
+    private PreferenceScreen mButtonBlacklist;
 
     /**
      * Results of reading forwarding settings
@@ -1424,6 +1434,9 @@ public class CallFeaturesSetting extends PreferenceActivity
         mVoicemailNotificationVibrate.setChecked(
                 VoicemailNotificationSettingsUtil.isVibrationEnabled(mPhone));
 
+        // Blacklist screen - Needed for setting summary
+        mButtonBlacklist = (PreferenceScreen) prefSet.findPreference(BUTTON_BLACKLIST);
+
         if (ImsManager.isVtEnabledByPlatform(mPhone.getContext()) && ENABLE_VT_FLAG) {
             boolean currentValue =
                     ImsManager.isEnhanced4gLteModeSettingEnabledByUser(mPhone.getContext())
@@ -1472,6 +1485,16 @@ public class CallFeaturesSetting extends PreferenceActivity
                 }
             }
             wifiCallingSettings.setSummary(resId);
+        }
+    }
+
+    private void updateBlacklistSummary() {
+        if (mButtonBlacklist != null) {
+            if (BlacklistUtils.isBlacklistEnabled(this)) {
+                mButtonBlacklist.setSummary(R.string.blacklist_summary);
+            } else {
+                mButtonBlacklist.setSummary(R.string.blacklist_summary_disabled);
+            }
         }
     }
 

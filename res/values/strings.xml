@@ -1318,4 +1318,16 @@
     <!-- DO NOT TRANSLATE. Internal key for a voicemail notification preference. -->
     <string name="wifi_calling_settings_key">button_wifi_calling_settings_key</string>
 
+    <!-- Advanced Settings -->
+    <string name="advanced_setting">Advanced Settings</string>
+
+    <!-- Blacklist preferences -->
+    <string name="blacklist_title">Blacklist</string>
+    <string name="blacklist_summary_disabled">Disabled</string>
+    <string name="blacklist_summary">Incoming calls from phone numbers in the blacklist will be blocked</string>
+
+    <!-- Blacklist notifications -->
+    <string name="blacklist_title">Blacklist</string>
+    <string name="blacklist_summary_disabled">Disabled</string>
+    <string name="blacklist_summary">Incoming calls from phone numbers in the blacklist will be blocked</string>
 </resources>
