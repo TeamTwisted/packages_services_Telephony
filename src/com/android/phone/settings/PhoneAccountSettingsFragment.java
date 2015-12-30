@@ -7,11 +7,12 @@ import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Icon;
 import android.net.sip.SipManager;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
+import android.preference.SwitchPreference;
+import android.provider.Settings;
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
@@ -22,6 +23,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.internal.telephony.Phone;
+import com.android.phone.Constants;
 import com.android.phone.PhoneUtils;
 import com.android.phone.R;
 import com.android.phone.SubscriptionInfoHelper;
@@ -72,7 +74,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
     private AccountSelectionPreference mDefaultOutgoingAccount;
 
     private ListPreference mUseSipCalling;
-    private CheckBoxPreference mSipReceiveCallsPreference;
+    private SwitchPreference mSipReceiveCallsPreference;
     private SipSharedPreferences mSipSharedPreferences;
 
     @Override
@@ -172,7 +174,7 @@ public class PhoneAccountSettingsFragment extends PreferenceFragment
             mUseSipCalling.setValueIndex(optionsValueIndex);
             mUseSipCalling.setSummary(mUseSipCalling.getEntry());
 
-            mSipReceiveCallsPreference = (CheckBoxPreference)
+            mSipReceiveCallsPreference = (SwitchPreference)
                     getPreferenceScreen().findPreference(SIP_RECEIVE_CALLS_PREF_KEY);
             mSipReceiveCallsPreference.setEnabled(SipUtil.isPhoneIdle(getActivity()));
             mSipReceiveCallsPreference.setChecked(
