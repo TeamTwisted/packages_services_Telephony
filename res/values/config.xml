@@ -197,6 +197,9 @@
          is potentially harmful by locking the SIM to 3G. -->
     <string name="config_disable_cdma_activation_code" translatable="false">false</string>
 
+    <!-- Disable speaker proximity preference for problematic devices -->
+    <bool name="config_enabled_speakerprox" translatable="false">true</bool>
+
     <!-- Flag indicating if SIM state should be checked before making an outgoing call. -->
     <bool name="config_checkSimStateBeforeOutgoingCall">false</bool>
     <!-- Package name for the SIM unlock dialog.[DO NOT TRANSLATE] -->

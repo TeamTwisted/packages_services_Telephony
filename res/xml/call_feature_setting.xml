@@ -58,12 +58,6 @@
         android:persistent="false"
         android:summary="@string/auto_retry_mode_summary"/>
 
-    <SwitchPreference
-        android:key="button_proximity_key"
-        android:title="@string/proximity_mode_title"
-        android:persistent="false"
-        android:summary="@string/proximity_on_summary" />
-        
     <PreferenceScreen
         android:key="button_gsm_more_expand_key"
         android:title="@string/labelGSMMore"
@@ -84,5 +78,34 @@
              android:targetPackage="com.android.settings"
              android:targetClass="com.android.settings.Settings$BlacklistSettingsActivity" />
      </PreferenceScreen>
+
+    <PreferenceCategory
+            android:key="category_prox_auto_speaker"
+            android:title="@string/display_category_prox_auto_speaker_title" >
+
+        <SwitchPreference
+            android:key="prox_auto_speaker"
+            android:title="@string/prox_auto_speaker_title"
+            android:summary="@string/prox_auto_speaker_summary"
+            android:persistent="false"
+            android:defaultValue="false" />
+
+        <SlimSeekBarPreference
+            android:key="prox_auto_speaker_delay"
+            android:title="@string/prox_auto_speaker_delay_title"
+            android:summary="@string/prox_auto_speaker_delay_summary"
+            android:persistent="false"
+            android:dependency="prox_auto_speaker" />
+
+        <SwitchPreference
+            android:key="prox_auto_speaker_incall_only"
+            android:title="@string/prox_auto_speaker_incall_only_title"
+            android:summaryOff="@string/prox_auto_speaker_incall_only_summary_off"
+            android:summaryOn="@string/prox_auto_speaker_incall_only_summary_on"
+            android:persistent="false"
+            android:defaultValue="false"
+            android:dependency="prox_auto_speaker" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>
